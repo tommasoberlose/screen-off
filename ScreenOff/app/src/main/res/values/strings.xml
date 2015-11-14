@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Screen Off</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_feedback">Feedback</string>
+    <string name="action_enable">Grant administrator privileges</string>
+    <string name="action_disable">Remove administrator privileges</string>
+    <string name="warning_remove_dev">Warning: remove admin permissions shout down screen off application.</string>
+    <string name="text_request_dev">Make this application a device administrator to turn off screen when you want with a single tap.</string>
+    <string name="text_error">Error</string>
+    <string name="text_version">v.</string>
+    <string name="text_welcome">Welcome!</string>
+    <string name="text_great">Great</string>
+    <string name="text_welcome_msg">Thank you for downloading Screen Off.\nTo enable the service grant application administrator privileges.\nFinally use the shortcut to turn off the screen with a single tap.\n\nFor any feedback or request uses the community accessible via the icon in the upper right corner.</string>
+</resources>

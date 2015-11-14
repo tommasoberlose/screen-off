@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Screen Off</string>
+    <string name="action_disable">Togli i Privilegi di Amministratore</string>
+    <string name="action_enable">Concedi i Privilegi di Amministratore</string>
+    <string name="text_error">Errore</string>
+    <string name="text_great">Ok</string>
+    <string name="text_version">v.</string>
+    <string name="action_feedback">Feedback</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="text_welcome">Benvenuto!</string>
+    <string name="text_request_dev">Rendi questa applicazione amministratore di sistema per spegnere lo schermo in ogni momento con un singolo tap.</string>
+    <string name="warning_remove_dev">Attenzione: togliere i privilegi di amministratore bloccherà il funzionamento di questa applicazione.</string>
+    <string name="text_welcome_msg">Grazie per aver scaricato Screen Off.\nPer abilitare il servizio concedi all\'applicazione i privilegi di amministratore.\nInfine utilizza la shortcut per spegnere lo schermo con un singolo tap.\n\nPer qualsiasi feedback o richiesta utilizza la community raggiungibile tramite l\'icona in alto a destra.</string>
+</resources>
