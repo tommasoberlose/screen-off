@@ -1,10 +1,13 @@
 package com.nego.screenoff;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -15,11 +18,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Main extends AppCompatActivity {
@@ -73,6 +78,7 @@ public class Main extends AppCompatActivity {
     public void updateUI(boolean admin) {
         button.setText(admin ? getString(R.string.action_disable) : getString(R.string.action_enable));
         button.setSelected(admin);
+        howToUseDialog(admin);
         if (admin) {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,6 +102,23 @@ public class Main extends AppCompatActivity {
                     startActivityForResult(intent, 5);
                 }
             });
+        }
+    }
+    public void howToUseDialog(boolean admin) {
+        if (admin && SP.getBoolean(Costants.PREFERENCE_SHOW_HOW_TO_USE_DIALOG, true)) {
+            SP.edit().putBoolean(Costants.PREFERENCE_SHOW_HOW_TO_USE_DIALOG, true).apply();
+
+            final Dialog d = new Dialog(Main.this, R.style.Theme_AppCompat_Light_Dialog);
+            final View attachView = LayoutInflater.from(this).inflate(R.layout.how_to_use_dialog, null);
+            attachView.findViewById(R.id.action_done).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    d.dismiss();
+                    SP.edit().putBoolean(Costants.PREFERENCE_SHOW_HOW_TO_USE_DIALOG, false).apply();
+                }
+            });
+            d.setContentView(attachView);
+            d.show();
         }
     }
 }
