@@ -13,4 +13,10 @@
     <string name="text_welcome_msg">Thank you for downloading Screen Off.\nTo enable the service grant application administrator privileges.\nFinally use the shortcut to turn off the screen with a single tap.\n\nFor any feedback or request uses the community accessible via the icon in the upper right corner.</string>
     <string name="text_how_to_use">Add a shortcut to your home or to any third party application to turn off the screen quickly with just one tap.</string>
     <string name="title_how_to_use">How to use</string>
+    <string name="text_attention">Attention</string>
+    <string name="ask_remove_privilege">Are you sure you want to remove administrator privileges?</string>
+    <string name="title_shortcut">Shortcut</string>
+    <string name="title_third_party_app">Third party applications</string>
+    <string name="subtitle_shortcut">Add shortcuts to your homescreen</string>
+    <string name="subtitle_third_party_app" translatable="false">e.g. Power Toggles, Tasker...</string>
 </resources>

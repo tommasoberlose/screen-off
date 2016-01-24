@@ -14,4 +14,9 @@
     <string name="text_welcome_msg">Grazie per aver scaricato Screen Off.\nPer abilitare il servizio concedi all\'applicazione i privilegi di amministratore.\nInfine utilizza la shortcut per spegnere lo schermo con un singolo tap.\n\nPer qualsiasi feedback o richiesta utilizza la community raggiungibile tramite l\'icona in alto a destra.</string>
     <string name="text_how_to_use">Aggiungi la scorciatoia alla tua home o a qualsiasi applicazione di terze parti per spegnere lo schermo velocemente con un solo tap.</string>
     <string name="title_how_to_use">Come procedere</string>
+    <string name="text_attention">Attenzione</string>
+    <string name="ask_remove_privilege">Sei sicuro di voler togliere i privilegi di amministratore?</string>
+    <string name="title_shortcut">Scorciatoia</string>
+    <string name="title_third_party_app">Applicazioni di terze parti</string>
+    <string name="subtitle_shortcut">Aggiungi le scorciatoie alla home page</string>
 </resources>

@@ -6,6 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 
 
 public class Utils {
@@ -14,11 +19,7 @@ public class Utils {
         DevicePolicyManager mDPM = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
         ComponentName mAdminName = new ComponentName(context, DeviceAdminReceiver.class);
 
-        if (!mDPM.isAdminActive(mAdminName)) {
-            return false;
-        } else {
-            return true;
-        }
+        return mDPM.isAdminActive(mAdminName);
     }
 
     public static void screenOff(Context context) {

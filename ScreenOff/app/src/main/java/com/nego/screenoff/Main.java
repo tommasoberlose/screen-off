@@ -3,25 +3,18 @@ package com.nego.screenoff;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.admin.DevicePolicyManager;
-import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,9 +22,12 @@ import android.widget.TextView;
 
 public class Main extends AppCompatActivity {
 
-    private Button button;
+    private CardView button;
     private SharedPreferences SP;
     private ImageView action_feedback;
+    private ImageView action_remove_p;
+    private CardView help_card;
+    private LinearLayout action_add_shortcut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +35,14 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SP = getSharedPreferences(Costants.PREFERENCES_COSTANT, Context.MODE_PRIVATE);
-        button = (Button) findViewById(R.id.button);
+        button = (CardView) findViewById(R.id.button);
+
+        action_feedback = (ImageView) findViewById(R.id.action_feedback);
+        action_remove_p = (ImageView) findViewById(R.id.action_remove_p);
+        help_card = (CardView) findViewById(R.id.help_card);
+        action_add_shortcut = (LinearLayout) findViewById(R.id.action_add_shortcut);
 
         // FEEDBACK
-        action_feedback = (ImageView) findViewById(R.id.action_feedback);
         action_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,20 +76,42 @@ public class Main extends AppCompatActivity {
     }
 
     public void updateUI(boolean admin) {
-        button.setText(admin ? getString(R.string.action_disable) : getString(R.string.action_enable));
-        button.setSelected(admin);
-        howToUseDialog(admin);
+
+        button.setVisibility(admin ? View.GONE : View.VISIBLE);
+        help_card.setVisibility(admin ? View.VISIBLE : View.GONE);
+
         if (admin) {
-            button.setOnClickListener(new View.OnClickListener() {
+            action_remove_p.animate().scaleY(1).scaleX(1).alpha(1).setInterpolator(new AccelerateDecelerateInterpolator()).start();
+            action_remove_p.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ComponentName devAdminReceiver = new ComponentName(Main.this, DeviceAdminReceiver.class);
-                    DevicePolicyManager dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-                    dpm.removeActiveAdmin(devAdminReceiver);
-                    updateUI(false);
+                    new AlertDialog.Builder(Main.this)
+                            .setTitle(getResources().getString(R.string.text_attention))
+                            .setMessage(getResources().getString(R.string.ask_remove_privilege))
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    ComponentName devAdminReceiver = new ComponentName(Main.this, DeviceAdminReceiver.class);
+                                    DevicePolicyManager dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+                                    dpm.removeActiveAdmin(devAdminReceiver);
+                                    updateUI(false);
+                                }
+                            })
+                            .setNegativeButton(android.R.string.cancel, null).show();
+
+                }
+            });
+            action_add_shortcut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShortcutReceiver.addShortcutToHome(Main.this);
+                    Intent startMain = new Intent(Intent.ACTION_MAIN);
+                    startMain.addCategory(Intent.CATEGORY_HOME);
+                    startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(startMain);
                 }
             });
         } else {
+            action_remove_p.animate().scaleY(0).scaleX(0).alpha(0).setInterpolator(new AccelerateDecelerateInterpolator()).start();
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,23 +124,6 @@ public class Main extends AppCompatActivity {
                     startActivityForResult(intent, 5);
                 }
             });
-        }
-    }
-    public void howToUseDialog(boolean admin) {
-        if (admin && SP.getBoolean(Costants.PREFERENCE_SHOW_HOW_TO_USE_DIALOG, true)) {
-            SP.edit().putBoolean(Costants.PREFERENCE_SHOW_HOW_TO_USE_DIALOG, true).apply();
-
-            final Dialog d = new Dialog(Main.this, R.style.Theme_AppCompat_Light_Dialog);
-            final View attachView = LayoutInflater.from(this).inflate(R.layout.how_to_use_dialog, null);
-            attachView.findViewById(R.id.action_done).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    d.dismiss();
-                    SP.edit().putBoolean(Costants.PREFERENCE_SHOW_HOW_TO_USE_DIALOG, false).apply();
-                }
-            });
-            d.setContentView(attachView);
-            d.show();
         }
     }
 }
