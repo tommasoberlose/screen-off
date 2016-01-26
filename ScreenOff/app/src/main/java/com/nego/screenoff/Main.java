@@ -28,6 +28,9 @@ public class Main extends AppCompatActivity {
     private ImageView action_remove_p;
     private CardView help_card;
     private LinearLayout action_add_shortcut;
+    private ImageView notification_icon;
+    private LinearLayout action_show_notification;
+    private TextView subtitle_show_notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,9 @@ public class Main extends AppCompatActivity {
         action_remove_p = (ImageView) findViewById(R.id.action_remove_p);
         help_card = (CardView) findViewById(R.id.help_card);
         action_add_shortcut = (LinearLayout) findViewById(R.id.action_add_shortcut);
+        notification_icon = (ImageView) findViewById(R.id.notification_icon);
+        action_show_notification = (LinearLayout) findViewById(R.id.toggle_notification);
+        subtitle_show_notification = (TextView) findViewById(R.id.subtitle_show_notification);
 
         // FEEDBACK
         action_feedback.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +81,7 @@ public class Main extends AppCompatActivity {
         super.onPause();
     }
 
-    public void updateUI(boolean admin) {
+    public void updateUI(final boolean admin) {
 
         button.setVisibility(admin ? View.GONE : View.VISIBLE);
         help_card.setVisibility(admin ? View.VISIBLE : View.GONE);
@@ -110,6 +116,29 @@ public class Main extends AppCompatActivity {
                     startActivity(startMain);
                 }
             });
+            if (SP.getBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, false)) {
+                notification_icon.setImageResource(R.drawable.ic_action_label);
+                subtitle_show_notification.setText(R.string.subtitle_toggle_notification_on);
+                action_show_notification.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SP.edit().putBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, false).apply();
+                        updateUI(admin);
+                        Utils.showNotification(Main.this, false);
+                    }
+                });
+            } else {
+                notification_icon.setImageResource(R.drawable.ic_action_label_outline);
+                subtitle_show_notification.setText(R.string.subtitle_toggle_notification_off);
+                action_show_notification.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SP.edit().putBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, true).apply();
+                        updateUI(admin);
+                        Utils.showNotification(Main.this, true);
+                    }
+                });
+            }
         } else {
             action_remove_p.animate().scaleY(0).scaleX(0).alpha(0).setInterpolator(new AccelerateDecelerateInterpolator()).start();
             button.setOnClickListener(new View.OnClickListener() {

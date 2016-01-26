@@ -41,7 +41,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.4"
             android:gravity="center"
             android:orientation="vertical">
             <TextView
@@ -60,7 +60,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
             android:orientation="vertical"
             android:gravity="center_horizontal|bottom"
             android:paddingBottom="8dp">
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="3dp"
-                app:cardElevation="0dp"
+                app:cardElevation="1dp"
                 android:background="@android:color/white"
                 app:cardBackgroundColor="@android:color/white"
                 app:cardPreventCornerOverlap="true"
@@ -201,6 +201,53 @@
                                 android:layout_marginRight="8dp"
                                 android:layout_marginLeft="8dp"
                                 android:singleLine="true"
+                                android:textColor="@android:color/black"
+                                android:alpha="0.30"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:id="@+id/toggle_notification"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/notification_icon"
+                            android:src="@drawable/ic_action_label_outline"
+                            android:tint="@android:color/black"
+                            android:alpha="0.54"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/title_toggle_notification"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:singleLine="true"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@android:color/black"
+                                android:alpha="0.54"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/subtitle_toggle_notification_off"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:singleLine="true"
+                                android:id="@+id/subtitle_show_notification"
                                 android:textColor="@android:color/black"
                                 android:alpha="0.30"/>
                         </LinearLayout>
