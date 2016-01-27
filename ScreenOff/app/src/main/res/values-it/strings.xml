@@ -19,7 +19,7 @@
     <string name="title_shortcut">Scorciatoia</string>
     <string name="title_third_party_app">Applicazioni di terze parti</string>
     <string name="subtitle_shortcut">Aggiungi le scorciatoie alla home page</string>
-    <string name="title_toggle_notification">Notifica Persistente</string>
+    <string name="title_toggle_notification">Mostra Notifica Persistente</string>
     <string name="subtitle_toggle_notification_off">Notifica non visibile </string>
     <string name="subtitle_toggle_notification_on">Notifica visibile</string>
     <string name="subtitle_notification">Clicca qui per spegnere lo schermo</string>

@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="3dp"
-                app:cardElevation="1dp"
+                app:cardElevation="0dp"
                 android:background="@android:color/white"
                 app:cardBackgroundColor="@android:color/white"
                 app:cardPreventCornerOverlap="true"
