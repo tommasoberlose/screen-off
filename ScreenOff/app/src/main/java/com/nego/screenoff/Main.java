@@ -31,6 +31,7 @@ public class Main extends AppCompatActivity {
     private ImageView notification_icon;
     private LinearLayout action_show_notification;
     private TextView subtitle_show_notification;
+    private LinearLayout action_open_store;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +48,26 @@ public class Main extends AppCompatActivity {
         notification_icon = (ImageView) findViewById(R.id.notification_icon);
         action_show_notification = (LinearLayout) findViewById(R.id.toggle_notification);
         subtitle_show_notification = (TextView) findViewById(R.id.subtitle_show_notification);
+        action_open_store = (LinearLayout) findViewById(R.id.action_open_store);
 
         // FEEDBACK
         action_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/communities/100614116200820350356/stream/bda977a4-6f0f-4f72-bd8e-08d148a6fa7e")));
+            }
+        });
+
+        // OPEN PLAY STORE
+        action_open_store.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://")));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store")));
+                }
             }
         });
 
@@ -117,7 +132,7 @@ public class Main extends AppCompatActivity {
                 }
             });
             if (SP.getBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, false)) {
-                notification_icon.setImageResource(R.drawable.ic_action_label);
+                notification_icon.setImageResource(R.drawable.ic_action_check_circle);
                 subtitle_show_notification.setText(R.string.subtitle_toggle_notification_on);
                 action_show_notification.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -128,7 +143,7 @@ public class Main extends AppCompatActivity {
                     }
                 });
             } else {
-                notification_icon.setImageResource(R.drawable.ic_action_label_outline);
+                notification_icon.setImageResource(R.drawable.ic_action_circle);
                 subtitle_show_notification.setText(R.string.subtitle_toggle_notification_off);
                 action_show_notification.setOnClickListener(new View.OnClickListener() {
                     @Override
