@@ -22,5 +22,5 @@
     <string name="title_toggle_notification">Show Ongoing Notification</string>
     <string name="subtitle_toggle_notification_on">Notification is visible</string>
     <string name="subtitle_toggle_notification_off">Notification is invisible</string>
-    <string name="subtitle_notification">Click here to turn off screen</string>
+    <string name="subtitle_notification">Tap to turn off screen</string>
 </resources>

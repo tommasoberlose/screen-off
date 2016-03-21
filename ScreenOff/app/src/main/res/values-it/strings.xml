@@ -22,5 +22,5 @@
     <string name="title_toggle_notification">Mostra Notifica Persistente</string>
     <string name="subtitle_toggle_notification_off">Notifica non visibile </string>
     <string name="subtitle_toggle_notification_on">Notifica visibile</string>
-    <string name="subtitle_notification">Clicca qui per spegnere lo schermo</string>
+    <string name="subtitle_notification">Spegni lo schermo</string>
 </resources>
