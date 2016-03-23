@@ -1,14 +1,13 @@
 <resources>
     <string name="app_name">Screen Off</string>
-    <string name="action_settings">Ρυθμίσεις</string>
-    <string name="action_feedback">Αποστολή εντυπώσεων</string>
-    <string name="action_enable">Απόδοση δικαιωμάτων διαχειριστή</string>
-    <string name="action_disable">Αφαίρεση δικαιωμάτων διαχειριστή</string>
-    <string name="warning_remove_dev">Προσοχή: η αφαίρεση δικαιωμάτων διαχειριστή θα απενεργοποιήσει την εφαρμογή!</string>
-    <string name="text_request_dev">Δώστε δικαιώματα διαχειριστή στην εφαρμογή για να μπορεί να απενεργοποιήσει την οθόνη με ένα άγγιγμα.</string>
-    <string name="text_error">Σφάλμα</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_feedback">Feedback</string>
+    <string name="action_enable">Grant administrator privileges</string>
+    <string name="action_disable">Remove administrator privileges</string>
+    <string name="warning_remove_dev">Warning: remove admin permissions shout down screen off application.</string>
+    <string name="text_request_dev">Make this application a device administrator to turn off screen when you want with a single tap.</string>
+    <string name="text_error">Error</string>
     <string name="text_version">v.</string>
-<<<<<<< HEAD
     <string name="text_welcome">Welcome!</string>
     <string name="text_great">Great</string>
     <string name="text_welcome_msg">Thank you for downloading Screen Off.\nTo enable the service grant application administrator privileges.\nFinally use the shortcut to turn off the screen with a single tap.\n\nFor any feedback or request uses the community accessible via the icon in the upper left corner.</string>
@@ -24,21 +23,4 @@
     <string name="subtitle_toggle_notification_on">Notification is visible</string>
     <string name="subtitle_toggle_notification_off">Notification is invisible</string>
     <string name="subtitle_notification">Tap to turn screen off</string>
-=======
-    <string name="text_welcome">Καλώς ήρθατε!</string>
-    <string name="text_great">Θαυμάσια</string>
-    <string name="text_welcome_msg">Ευχαριστούμε που εγκαταστήσατε το Screen Off.\nΓια να ενεργοποιήσετε την υπηρεσία πρέπει να της δώσετε δικαιώματα διαχειριστή.\nΈπειτα χρησιμοποιήστε τη συντόμευση στην επιφάνεια εργασίας ή στην μπάρα ειδοποιήσεων για να απενεργοποιήσετε την οθόνη με ένα άγγιγμα.\n\nΓια αποστολή εντυπώσεων ή προτάσεις, χρησιμοποιήστε το κουμπί της κοινότητας στην πάνω αριστερή γωνία.</string>
-    <string name="text_how_to_use">Προσθέστε μια συντόμευση στην επιφάνεια εργασίας ή την μπάρα ειδοποιήσεων για να απενεργοποιήσετε την οθόνη με ένα άγγιγμα.</string>
-    <string name="title_how_to_use">Χρήση:</string>
-    <string name="text_attention">Προσοχή!</string>
-    <string name="ask_remove_privilege">Είστε σίγουρος ότι θέλετε να αφαιρέσετε τα δικαιώματα διαχειριστή;</string>
-    <string name="title_shortcut">Συντόμευση</string>
-    <string name="title_third_party_app">Εφαρμογές 3ου μέρους</string>
-    <string name="subtitle_shortcut">Προσθήκη συντομεύσεων στην επιφάνεια εργασίας</string>
-    <string name="subtitle_third_party_app" translatable="false">e.g. Power Toggles, Tasker...</string>
-    <string name="title_toggle_notification">Προσθήκη μόνιμης ειδοποίησης στην μπάρα ειδοποιήσεων</string>
-    <string name="subtitle_toggle_notification_on">Η ειδοποίηση είναι ορατή</string>
-    <string name="subtitle_toggle_notification_off">Η ειδοποίηση δεν είναι ορατή</string>
-    <string name="subtitle_notification">Αγγίξτε για να απενεργοποιήσετε την οθόνη</string>
->>>>>>> 3e2b70238bb3b6ab3123fdadc26d8f567f7dae63
 </resources>
