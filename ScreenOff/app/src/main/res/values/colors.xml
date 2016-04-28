@@ -8,4 +8,5 @@
     <color name="all_text">#444444</color>
     <color name="secondary_text">#727272</color>
     <color name="back_selected_item">#eeeeee</color>
+    <color name="back_status_bar">#cbcbcb</color>
 </resources>
