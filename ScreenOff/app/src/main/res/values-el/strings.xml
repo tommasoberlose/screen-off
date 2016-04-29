@@ -8,7 +8,7 @@
     <string name="warning_remove_dev">Προσοχή: η αφαίρεση δικαιωμάτων διαχειριστή θα απενεργοποιήσει την εφαρμογή!</string>
     <string name="text_request_dev">Δώστε δικαιώματα διαχειριστή στην εφαρμογή για να μπορεί να σβήσει την οθόνη με ένα άγγιγμα.</string>
     <string name="text_error">Σφάλμα</string>
-    <string name="text_version">v.</string>
+    <string name="text_version">v</string>
     <string name="text_welcome">Καλώς ήρθατε!</string>
     <string name="text_great">Θαυμάσια!</string>
     <string name="text_welcome_msg">Ευχαριστούμε που εγκαταστήσατε το Screen Off.\nΓια να ενεργοποιήσετε την υπηρεσία πρέπει να της δώσετε δικαιώματα διαχειριστή.\nΈπειτα χρησιμοποιήστε τις συντομεύσεις στην επιφάνεια εργασίας ή στις ειδοποιήσεις για να σβήσετε την οθόνη με ένα άγγιγμα.\n\nΓια αποστολή εντυπώσεων ή προτάσεις, χρησιμοποιήστε το κουμπί της κοινότητας στην πάνω αριστερή γωνία.</string>
@@ -23,4 +23,6 @@
     <string name="subtitle_toggle_notification_on">Η ειδοποίηση είναι ορατή</string>
     <string name="subtitle_toggle_notification_off">Η ειδοποίηση δεν είναι ορατή</string>
     <string name="subtitle_notification">Αγγίξτε για σβήσιμο της οθόνης</string>
+    <string name="subtitle_wake_up">Same developer, Same Simplicity</string>
+    <string name="title_wake_up">Need a Wake Up app?</string>
 </resources>

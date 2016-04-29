@@ -7,6 +7,6 @@
     <color name="primary_text">#212121</color>
     <color name="all_text">#444444</color>
     <color name="secondary_text">#727272</color>
-    <color name="back_selected_item">#eeeeee</color>
-    <color name="back_status_bar">#cbcbcb</color>
+    <color name="back_selected_item">#f5f5f5</color>
+    <color name="back_status_bar">#cecece</color>
 </resources>

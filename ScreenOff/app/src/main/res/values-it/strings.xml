@@ -5,7 +5,7 @@
     <string name="action_enable">Concedi i Privilegi di Amministratore</string>
     <string name="text_error">Errore</string>
     <string name="text_great">Ok</string>
-    <string name="text_version">v.</string>
+    <string name="text_version">v</string>
     <string name="action_feedback">Feedback</string>
     <string name="action_settings">Impostazioni</string>
     <string name="text_welcome">Benvenuto!</string>
@@ -23,4 +23,6 @@
     <string name="subtitle_toggle_notification_off">Notifica non visibile </string>
     <string name="subtitle_toggle_notification_on">Notifica visibile</string>
     <string name="subtitle_notification">Spegni lo schermo</string>
+    <string name="subtitle_wake_up">Stesso Sviluppatore, stessa Semplicità</string>
+    <string name="title_wake_up">Prova l\'app Wake Up!</string>
 </resources>

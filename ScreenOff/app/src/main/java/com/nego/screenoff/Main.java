@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class Main extends AppCompatActivity {
     private ImageView action_feedback;
     private ImageView action_remove_p;
     private CardView help_card;
+    private CardView tip_card;
     private LinearLayout action_add_shortcut;
     private ImageView notification_icon;
     private LinearLayout action_show_notification;
@@ -44,6 +46,7 @@ public class Main extends AppCompatActivity {
         action_feedback = (ImageView) findViewById(R.id.action_feedback);
         action_remove_p = (ImageView) findViewById(R.id.action_remove_p);
         help_card = (CardView) findViewById(R.id.help_card);
+        tip_card = (CardView) findViewById(R.id.tip_card);
         action_add_shortcut = (LinearLayout) findViewById(R.id.action_add_shortcut);
         notification_icon = (ImageView) findViewById(R.id.notification_icon);
         action_show_notification = (LinearLayout) findViewById(R.id.toggle_notification);
@@ -63,10 +66,10 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.nego.wakeup")));
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.nego.wakeup")));
                 }
             }
         });
@@ -100,6 +103,7 @@ public class Main extends AppCompatActivity {
 
         button.setVisibility(admin ? View.GONE : View.VISIBLE);
         help_card.setVisibility(admin ? View.VISIBLE : View.GONE);
+        tip_card.setVisibility(admin ? View.VISIBLE : View.GONE);
 
         if (admin) {
             action_remove_p.animate().scaleY(1).scaleX(1).alpha(1).setInterpolator(new AccelerateDecelerateInterpolator()).start();
@@ -131,8 +135,9 @@ public class Main extends AppCompatActivity {
                     startActivity(startMain);
                 }
             });
+            notification_icon.setClickable(false);
             if (SP.getBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, false)) {
-                notification_icon.setImageResource(R.drawable.ic_action_check_circle);
+                notification_icon.setImageResource(R.drawable.ic_action_toggle_check_box);
                 subtitle_show_notification.setText(R.string.subtitle_toggle_notification_on);
                 action_show_notification.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -143,7 +148,7 @@ public class Main extends AppCompatActivity {
                     }
                 });
             } else {
-                notification_icon.setImageResource(R.drawable.ic_action_circle);
+                notification_icon.setImageResource(R.drawable.ic_action_toggle_check_box_outline_blank);
                 subtitle_show_notification.setText(R.string.subtitle_toggle_notification_off);
                 action_show_notification.setOnClickListener(new View.OnClickListener() {
                     @Override
