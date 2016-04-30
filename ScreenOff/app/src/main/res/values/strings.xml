@@ -8,9 +8,9 @@
     <string name="text_request_dev">Make this application a device administrator to turn off screen when you want with a single tap.</string>
     <string name="text_error">Error</string>
     <string name="text_version">v</string>
-    <string name="text_welcome">Welcome!</string>
-    <string name="text_great">Great</string>
-    <string name="text_welcome_msg">Thank you for downloading Screen Off.\nTo enable the service grant application administrator privileges.\nFinally use the shortcut to turn off the screen with a single tap.\n\nFor any feedback or request uses the community accessible via the icon in the upper left corner.</string>
+    <string name="text_welcome">Just a few tips!</string>
+    <string name="text_great">Got it</string>
+    <string name="text_welcome_msg">To start, <b>grant administrator privileges</b> to the application.</string>
     <string name="text_how_to_use">Add a shortcut to your home or to any third party application to turn off the screen quickly with just one tap.</string>
     <string name="title_how_to_use">How to use:</string>
     <string name="text_attention">Attention</string>
@@ -25,4 +25,6 @@
     <string name="subtitle_notification">Tap to turn screen off</string>
     <string name="title_wake_up">Need a Wake Up app?</string>
     <string name="subtitle_wake_up">Same developer, Same Simplicity</string>
+    <string name="text_welcome_msg_feedback">For any <b>feedback or request</b> use the community.</string>
+    <string name="text_welcome_msg_fingerprint">Due to a bug in Android, already known by Google, <b>it is not currently support</b> the use of fingerprint recognition.</string>
 </resources>

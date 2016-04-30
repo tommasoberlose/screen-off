@@ -40,8 +40,7 @@ public class Utils {
         if (SP.getBoolean(Costants.FIRST_VIEW, true)) {
             SP.edit().putBoolean(Costants.FIRST_VIEW, false).apply();
             new AlertDialog.Builder(context)
-                    .setTitle(R.string.text_welcome)
-                    .setMessage(R.string.text_welcome_msg)
+                    .setView(R.layout.welcome_dialog)
                     .setPositiveButton(R.string.text_great, null)
                     .show();
         }
