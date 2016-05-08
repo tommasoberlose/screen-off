@@ -27,4 +27,15 @@
     <string name="subtitle_wake_up">Same developer, Same Simplicity</string>
     <string name="text_welcome_msg_feedback">For any <b>feedback or request</b> use the community.</string>
     <string name="text_welcome_msg_fingerprint">Due to a bug in Android, already known by Google, <b>it is not currently support</b> the use of fingerprint recognition.</string>
+    <string name="title_activity_donation">Help Developer</string>
+    <string name="title_translate">Help with translations</string>
+    <string name="subtitle_translate">Open a pull request on GitHub</string>
+    <string name="donation_coffee">Coffee</string>
+    <string name="donation_lunch">Lunch</string>
+    <string name="donation_icecream">Ice Cream</string>
+    <string name="donation_breakfast">Breakfast</string>
+    <string name="text_donate">Make a Donation:</string>
+    <string name="error_billing">Billing Error</string>
+    <string name="text_thanks">Thanks for support!</string>
+    <string name="title_developer">Find out my projects</string>
 </resources>

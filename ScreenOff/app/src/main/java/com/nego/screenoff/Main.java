@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.CardView;
@@ -25,15 +26,12 @@ public class Main extends AppCompatActivity {
 
     private CardView button;
     private SharedPreferences SP;
-    private ImageView action_feedback;
-    private ImageView action_remove_p;
+    private ImageView action_menu;
     private CardView help_card;
-    private CardView tip_card;
     private LinearLayout action_add_shortcut;
     private ImageView notification_icon;
     private LinearLayout action_show_notification;
     private TextView subtitle_show_notification;
-    private LinearLayout action_open_store;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,34 +41,60 @@ public class Main extends AppCompatActivity {
         SP = getSharedPreferences(Costants.PREFERENCES_COSTANT, Context.MODE_PRIVATE);
         button = (CardView) findViewById(R.id.button);
 
-        action_feedback = (ImageView) findViewById(R.id.action_feedback);
-        action_remove_p = (ImageView) findViewById(R.id.action_remove_p);
+        action_menu = (ImageView) findViewById(R.id.action_menu);
         help_card = (CardView) findViewById(R.id.help_card);
-        tip_card = (CardView) findViewById(R.id.tip_card);
         action_add_shortcut = (LinearLayout) findViewById(R.id.action_add_shortcut);
         notification_icon = (ImageView) findViewById(R.id.notification_icon);
         action_show_notification = (LinearLayout) findViewById(R.id.toggle_notification);
         subtitle_show_notification = (TextView) findViewById(R.id.subtitle_show_notification);
-        action_open_store = (LinearLayout) findViewById(R.id.action_open_store);
 
-        // FEEDBACK
-        action_feedback.setOnClickListener(new View.OnClickListener() {
+        // DONATION
+        action_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/communities/100614116200820350356/stream/bda977a4-6f0f-4f72-bd8e-08d148a6fa7e")));
-            }
-        });
+                final BottomSheetDialog bDialog = new BottomSheetDialog(Main.this);
+                View bView = LayoutInflater.from(Main.this).inflate(R.layout.bottom_sheet_menu, null);
 
-        // OPEN PLAY STORE
-        action_open_store.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.nego.wakeup")));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.nego.wakeup")));
-                }
+                bView.findViewById(R.id.action_remove_p).setVisibility(Utils.checkAdmin(Main.this) ? View.VISIBLE : View.GONE);
+                bView.findViewById(R.id.action_remove_p).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(Main.this)
+                                .setTitle(getResources().getString(R.string.text_attention))
+                                .setMessage(getResources().getString(R.string.ask_remove_privilege))
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        ComponentName devAdminReceiver = new ComponentName(Main.this, DeviceAdminReceiver.class);
+                                        DevicePolicyManager dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+                                        dpm.removeActiveAdmin(devAdminReceiver);
+                                        updateUI(false);
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.cancel, null).show();
+                        bDialog.dismiss();
+                    }
+                });
+
+                bView.findViewById(R.id.action_feedback).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/communities/100614116200820350356/stream/bda977a4-6f0f-4f72-bd8e-08d148a6fa7e")));
+                        bDialog.dismiss();
+                    }
+                });
+
+                bView.findViewById(R.id.action_donation).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Main.this, Donation.class));
+                        bDialog.dismiss();
+                    }
+                });
+
+                SP.edit().remove(Costants.PREFERENCE_SHOW_TIP).apply();
+
+                bDialog.setContentView(bView);
+                bDialog.show();
             }
         });
 
@@ -103,28 +127,8 @@ public class Main extends AppCompatActivity {
 
         button.setVisibility(admin ? View.GONE : View.VISIBLE);
         help_card.setVisibility(admin ? View.VISIBLE : View.GONE);
-        tip_card.setVisibility(admin ? View.VISIBLE : View.GONE);
 
         if (admin) {
-            action_remove_p.animate().scaleY(1).scaleX(1).alpha(1).setInterpolator(new AccelerateDecelerateInterpolator()).start();
-            action_remove_p.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    new AlertDialog.Builder(Main.this)
-                            .setTitle(getResources().getString(R.string.text_attention))
-                            .setMessage(getResources().getString(R.string.ask_remove_privilege))
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    ComponentName devAdminReceiver = new ComponentName(Main.this, DeviceAdminReceiver.class);
-                                    DevicePolicyManager dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-                                    dpm.removeActiveAdmin(devAdminReceiver);
-                                    updateUI(false);
-                                }
-                            })
-                            .setNegativeButton(android.R.string.cancel, null).show();
-
-                }
-            });
             action_add_shortcut.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -160,7 +164,6 @@ public class Main extends AppCompatActivity {
                 });
             }
         } else {
-            action_remove_p.animate().scaleY(0).scaleX(0).alpha(0).setInterpolator(new AccelerateDecelerateInterpolator()).start();
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
