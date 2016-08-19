@@ -16,7 +16,7 @@
     <string name="title_how_to_use">Χρήση:</string>
     <string name="text_attention">Προσοχή!</string>
     <string name="ask_remove_privilege">Είστε σίγουρος ότι θέλετε να αφαιρέσετε τα δικαιώματα διαχειριστή;</string>
-    <string name="title_shortcut">Συντόμευση</string>
+    <string name="title_shortcut">Προσθέστε συντομεύσεις</string>
     <string name="title_third_party_app">Εφαρμογές 3ου μέρους</string>
     <string name="subtitle_shortcut">Προσθήκη συντομεύσεων</string>
     <string name="title_toggle_notification">Προσθήκη ειδοποίησης</string>

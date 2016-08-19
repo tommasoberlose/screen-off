@@ -77,23 +77,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="3dp"
-            app:cardElevation="0dp"
-            android:background="@android:color/white"
-            app:cardBackgroundColor="@android:color/white"
+            app:cardElevation="1dp"
+            android:background="@color/colorAccent"
+            app:cardBackgroundColor="@color/colorAccent"
             app:cardPreventCornerOverlap="true"
             android:visibility="visible"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="24dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:paddingLeft="14dp"
                     android:paddingRight="14dp"
                     android:paddingBottom="14dp"
@@ -103,10 +104,10 @@
                         android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceButton"
                         android:text="@string/title_how_to_use"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:id="@+id/action_done"
                         android:fontFamily="sans-serif-medium"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/black"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -134,15 +135,14 @@
                             android:text="@string/title_shortcut"
                             android:singleLine="true"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.54"/>
+                            android:textColor="@android:color/white"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/subtitle_shortcut"
                             android:singleLine="true"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.30"/>
+                            android:textColor="@android:color/white"
+                            android:alpha="0.54"/>
                     </LinearLayout>
                     <ImageView
                         android:layout_width="48dp"
@@ -153,8 +153,7 @@
                         android:layout_marginEnd="12dp"
                         android:layout_marginStart="8dp"
                         android:src="@drawable/ic_action_content_add_box"
-                        android:tint="@android:color/black"
-                        android:alpha="0.54"/>
+                        android:tint="@android:color/white"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -182,16 +181,15 @@
                             android:text="@string/title_toggle_notification"
                             android:singleLine="true"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.54"/>
+                            android:textColor="@android:color/white"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/subtitle_toggle_notification_off"
                             android:singleLine="true"
                             android:id="@+id/subtitle_show_notification"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.30"/>
+                            android:textColor="@android:color/white"
+                            android:alpha="0.54"/>
                     </LinearLayout>
                     <ImageView
                         android:layout_width="48dp"
@@ -203,8 +201,7 @@
                         android:layout_marginStart="8dp"
                         android:id="@+id/notification_icon"
                         android:src="@drawable/ic_action_toggle_check_box_outline_blank"
-                        android:tint="@android:color/black"
-                        android:alpha="0.54"/>
+                        android:tint="@android:color/white"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -212,6 +209,7 @@
                     android:orientation="horizontal"
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
+                    android:visibility="gone"
                     android:id="@+id/third_part_app"
                     android:gravity="center_vertical">
                     <LinearLayout
@@ -230,15 +228,14 @@
                             android:text="@string/title_third_party_app"
                             android:singleLine="true"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.54"/>
+                            android:textColor="@android:color/white"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/subtitle_third_party_app"
                             android:singleLine="true"
-                            android:textColor="@android:color/black"
-                            android:alpha="0.30"/>
+                            android:textColor="@android:color/white"
+                            android:alpha="0.54"/>
                     </LinearLayout>
                     <ImageView
                         android:layout_width="48dp"
@@ -249,8 +246,7 @@
                         android:layout_marginEnd="12dp"
                         android:layout_marginStart="8dp"
                         android:src="@drawable/ic_action_maps_layers"
-                        android:tint="@android:color/black"
-                        android:alpha="0.54"/>
+                        android:tint="@android:color/white"/>
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>

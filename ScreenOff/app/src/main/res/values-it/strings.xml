@@ -16,7 +16,7 @@
     <string name="title_how_to_use">Come procedere:</string>
     <string name="text_attention">Attenzione</string>
     <string name="ask_remove_privilege">Sei sicuro di voler togliere i privilegi di amministratore?</string>
-    <string name="title_shortcut">Scorciatoia</string>
+    <string name="title_shortcut">Aggiungi Scorciatoia</string>
     <string name="title_third_party_app">Applicazioni di terze parti</string>
     <string name="subtitle_shortcut">Aggiungi le scorciatoie alla home page</string>
     <string name="title_toggle_notification">Mostra Notifica Persistente</string>

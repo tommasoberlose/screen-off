@@ -15,7 +15,7 @@
     <string name="title_how_to_use">How to use:</string>
     <string name="text_attention">Attention</string>
     <string name="ask_remove_privilege">Are you sure you want to remove administrator privileges?</string>
-    <string name="title_shortcut">Shortcut</string>
+    <string name="title_shortcut">Add Shortcut</string>
     <string name="title_third_party_app">Third party applications</string>
     <string name="subtitle_shortcut">Add shortcuts to your homescreen</string>
     <string name="subtitle_third_party_app" translatable="false">e.g. Power Toggles, Tasker…</string>

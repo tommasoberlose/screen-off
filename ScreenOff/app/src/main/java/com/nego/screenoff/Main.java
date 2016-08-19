@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -90,8 +91,6 @@ public class Main extends AppCompatActivity {
                         bDialog.dismiss();
                     }
                 });
-
-                SP.edit().remove(Costants.PREFERENCE_SHOW_TIP).apply();
 
                 bDialog.setContentView(bView);
                 bDialog.show();
