@@ -21,7 +21,10 @@
             android:src="@drawable/ic_action_remove_privilege"
             android:tint="@color/all_text"
             android:layout_gravity="center_vertical"
-            android:layout_margin="8dp" />
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +49,10 @@
             android:src="@drawable/ic_action_communication_chat"
             android:tint="@color/all_text"
             android:layout_gravity="center_vertical"
-            android:layout_margin="8dp"  />
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"  />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +77,10 @@
             android:src="@drawable/ic_action_action_wallet_giftcard"
             android:tint="@color/all_text"
             android:layout_gravity="center_vertical"
-            android:layout_margin="8dp"  />
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"  />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

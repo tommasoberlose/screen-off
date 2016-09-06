@@ -8,7 +8,7 @@ android {
         applicationId "com.nego.screenoff"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 19
+        versionCode 20
         versionName "1.0"
     }
     buildTypes {

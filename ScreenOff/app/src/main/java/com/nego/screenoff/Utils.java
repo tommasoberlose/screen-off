@@ -1,5 +1,6 @@
 package com.nego.screenoff;
 
+import android.app.Instrumentation;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,8 +14,13 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import com.nego.screenoff.util.RootUtil;
+
+import java.io.IOException;
 
 
 public class Utils {
@@ -37,11 +43,26 @@ public class Utils {
         }
     }
 
+    public static void rootScreenOff(Context context) {
+        try {
+            if (Runtime.getRuntime().exec(new String[]{"su", "-c", "input keyevent 26"}).waitFor() != 0)
+                Utils.screenOff(context);
+        } catch (Exception e) {
+            Utils.screenOff(context);
+        }
+    }
+
     public static void welcome(Context context, SharedPreferences SP) {
+        SP.edit().remove(Costants.FIRST_VIEW).apply();
         if (SP.getBoolean(Costants.FIRST_VIEW, true)) {
             SP.edit().putBoolean(Costants.FIRST_VIEW, false).apply();
+            View welcome_view = View.inflate(context, R.layout.welcome_dialog, null);
+
+            boolean isDeviceRooted = RootUtil.isDeviceRooted();
+            welcome_view.findViewById(R.id.root_tip).setVisibility(isDeviceRooted ? View.VISIBLE : View.GONE);
+
             new AlertDialog.Builder(context)
-                    .setView(R.layout.welcome_dialog)
+                    .setView(welcome_view)
                     .setPositiveButton(R.string.text_great, null)
                     .show();
         }

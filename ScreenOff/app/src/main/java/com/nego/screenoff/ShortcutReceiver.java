@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.nego.screenoff.util.RootUtil;
+
 public class ShortcutReceiver extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class ShortcutReceiver extends Activity {
         }
 
         if (getIntent().getAction().equals(Costants.ACTION_SCREEN_OFF)) {
-            Utils.screenOff(this);
+            Utils.rootScreenOff(this);
             finish();
         }
 

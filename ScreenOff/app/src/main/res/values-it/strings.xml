@@ -26,7 +26,7 @@
     <string name="subtitle_wake_up">Stesso Sviluppatore, stessa Semplicità</string>
     <string name="title_wake_up">Prova l\'app Wake Up!</string>
     <string name="text_welcome_msg_feedback">Per qualsiasi <b>feedback o richiesta</b> utilizza la nostra community.</string>
-    <string name="text_welcome_msg_fingerprint">A causa di un bug di Android, già conosciuto da Google, <b>non è attualmente supportato</b> l\'utilizzo di riconoscimento fingerprint.</string>
+    <string name="text_welcome_msg_fingerprint">A causa di un bug di Android, <b>non è attualmente supportato</b> l\'utilizzo del smart lock.</string>
     <string name="title_activity_donation">Aiuta lo Sviluppatore</string>
     <string name="title_translate">Aiuta con le traduzioni</string>
     <string name="subtitle_translate">Apri una richiesta di pull su GitHub</string>
@@ -38,4 +38,5 @@
     <string name="error_billing">Errore Donazioni</string>
     <string name="text_thanks">Grazie per il supporto!</string>
     <string name="title_developer">Scopri i miei progetti</string>
+    <string name="root_request"><b>Concedi i permessi di root</b> alla applicazione per utilizzare lo smart lock!</string>
 </resources>
