@@ -1,6 +1,5 @@
 package com.nego.screenoff;
 
-import android.app.Instrumentation;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,14 +12,12 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.RemoteViews;
 
 import com.nego.screenoff.util.RootUtil;
 
-import java.io.IOException;
+import cyanogenmod.app.CMStatusBarManager;
+import cyanogenmod.app.CustomTile;
 
 
 public class Utils {
@@ -43,19 +40,29 @@ public class Utils {
         }
     }
 
-    public static void rootScreenOff(Context context) {
-        try {
-            if (Runtime.getRuntime().exec(new String[]{"su", "-c", "input keyevent 26"}).waitFor() != 0)
-                Utils.screenOff(context);
-        } catch (Exception e) {
-            Utils.screenOff(context);
-        }
+    public static void rootScreenOff(final Context context) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences SP = context.getSharedPreferences(Constants.PREFERENCES_COSTANT, Context.MODE_PRIVATE);
+                if (SP.getBoolean(Constants.PREFERENCE_LOCK_INSTANTLY, true)) {
+                    try {
+                        if (Runtime.getRuntime().exec(new String[]{"su", "-c", "input keyevent 26"}).waitFor() != 0) {
+                            Utils.screenOff(context);
+                        }
+                    } catch (Exception e) {
+                        Utils.screenOff(context);
+                    }
+                } else {
+                    Utils.screenOff(context);
+                }
+            }
+        }).start();
     }
 
     public static void welcome(Context context, SharedPreferences SP) {
-        SP.edit().remove(Costants.FIRST_VIEW).apply();
-        if (SP.getBoolean(Costants.FIRST_VIEW, true)) {
-            SP.edit().putBoolean(Costants.FIRST_VIEW, false).apply();
+        if (SP.getBoolean(Constants.FIRST_VIEW, true)) {
+            SP.edit().putBoolean(Constants.FIRST_VIEW, false).apply();
             View welcome_view = View.inflate(context, R.layout.welcome_dialog, null);
 
             boolean isDeviceRooted = RootUtil.isDeviceRooted();
@@ -72,13 +79,13 @@ public class Utils {
         if (show) {
 
             Intent i = new Intent(context, ShortcutReceiver.class);
-            i.setAction(Costants.ACTION_SCREEN_OFF);
+            i.setAction(Constants.ACTION_SCREEN_OFF);
             PendingIntent pi = PendingIntent.getActivity(context, -1, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
             NotificationManager notificationManager = (NotificationManager)
                     context.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationCompat.Builder n = new NotificationCompat.Builder(context)
-                    .setSmallIcon(R.drawable.ic_stat_power_off)
+                    .setSmallIcon(R.drawable.ic_stat_screen_off)
                     .setContentIntent(pi)
                     .setOngoing(true)
                     .setPriority(-1)
@@ -98,4 +105,34 @@ public class Utils {
         }
     }
 
+
+    public static void publishCMCustomTile(Context context) {
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Constants.ACTION_SCREEN_OFF);
+
+            //intent.putExtra(MainActivity.STATE, States.STATE_OFF);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                    intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            Intent long_i = new Intent(context, Main.class);
+            PendingIntent longPendingIntent = PendingIntent.getBroadcast(context, 1,
+                    long_i, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            CustomTile customTile = new CustomTile.Builder(context)
+                    .setOnClickIntent(pendingIntent)
+                    .setContentDescription(context.getString(R.string.text_how_to_use))
+                    .setLabel(context.getString(R.string.app_name))
+                    .shouldCollapsePanel(true)
+                    .setOnLongClickIntent(longPendingIntent)
+                    .setIcon(R.drawable.ic_tile_screen_off)
+                    .build();
+
+            CMStatusBarManager.getInstance(context)
+                    .publishTile(1, customTile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

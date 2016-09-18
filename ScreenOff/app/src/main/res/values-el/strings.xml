@@ -39,4 +39,8 @@
     <string name="text_thanks">Thanks for support!</string>
     <string name="title_developer">Find out my projects</string>
     <string name="root_request"><b>Grant root permissions</b> to the application to support smart lock!</string>
+    <string name="title_help_uninstall">How to uninstall</string>
+    <string name="title_root_function">Root Privileges</string>
+    <string name="subtitle_root_function">Not immediately lock the device</string>
+    <string name="message_help_uninstall">To uninstall you must remove, first, the administrative privileges.\nFinally, you can proceed to uninstall the app through the system.</string>
 </resources>

@@ -39,4 +39,8 @@
     <string name="text_thanks">Grazie per il supporto!</string>
     <string name="title_developer">Scopri i miei progetti</string>
     <string name="root_request"><b>Concedi i permessi di root</b> alla applicazione per utilizzare lo smart lock!</string>
+    <string name="title_help_uninstall">Come disinstallare</string>
+    <string name="title_root_function">Privilegi di Root</string>
+    <string name="subtitle_root_function">Non bloccare immediatamente il dispositivo</string>
+    <string name="message_help_uninstall">Per la disinstallazione è necessario rimuovere, come prima cosa, i privilegi di amministrazione\nInfine si può procedere con il disinstallare l\'app tramite il sistema.</string>
 </resources>

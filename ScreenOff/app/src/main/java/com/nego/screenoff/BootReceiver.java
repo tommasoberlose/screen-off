@@ -11,8 +11,8 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED") || intent.getAction().equals("android.intent.action.MY_PACKAGE_REPLACED")) {
-            SharedPreferences SP = context.getSharedPreferences(Costants.PREFERENCES_COSTANT, Context.MODE_PRIVATE);
-            Utils.showNotification(context, SP.getBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, false));
+            SharedPreferences SP = context.getSharedPreferences(Constants.PREFERENCES_COSTANT, Context.MODE_PRIVATE);
+            Utils.showNotification(context, SP.getBoolean(Constants.PREFERENCE_SHOW_NOTIFICATION, false));
         }
     }
 }

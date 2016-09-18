@@ -5,6 +5,7 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="cyanogenmod.permission.PUBLISH_CUSTOM_TILE" />
 
     <application
         android:allowBackup="true"
@@ -53,6 +54,20 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".ExportedBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.nego.screenoff.action.SCREEN_OFF" />
             </intent-filter>
         </receiver>
 

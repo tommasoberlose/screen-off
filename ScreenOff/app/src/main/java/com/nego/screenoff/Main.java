@@ -1,7 +1,6 @@
 package com.nego.screenoff;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,18 +9,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.nego.screenoff.util.RootUtil;
 
 public class Main extends AppCompatActivity {
 
@@ -33,13 +30,15 @@ public class Main extends AppCompatActivity {
     private ImageView notification_icon;
     private LinearLayout action_show_notification;
     private TextView subtitle_show_notification;
+    private LinearLayout action_root_function;
+    private ImageView root_function_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SP = getSharedPreferences(Costants.PREFERENCES_COSTANT, Context.MODE_PRIVATE);
+        SP = getSharedPreferences(Constants.PREFERENCES_COSTANT, Context.MODE_PRIVATE);
         button = (CardView) findViewById(R.id.button);
 
         action_menu = (ImageView) findViewById(R.id.action_menu);
@@ -48,6 +47,8 @@ public class Main extends AppCompatActivity {
         notification_icon = (ImageView) findViewById(R.id.notification_icon);
         action_show_notification = (LinearLayout) findViewById(R.id.toggle_notification);
         subtitle_show_notification = (TextView) findViewById(R.id.subtitle_show_notification);
+        action_root_function = (LinearLayout) findViewById(R.id.use_root_function);
+        root_function_icon = (ImageView) findViewById(R.id.root_function_icon);
 
         // DONATION
         action_menu.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +89,18 @@ public class Main extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(Main.this, Donation.class));
+                        bDialog.dismiss();
+                    }
+                });
+
+                bView.findViewById(R.id.action_uninstall).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new AlertDialog.Builder(Main.this)
+                                .setTitle(getResources().getString(R.string.title_help_uninstall))
+                                .setMessage(getResources().getString(R.string.message_help_uninstall))
+                                .setPositiveButton(android.R.string.ok, null)
+                                .show();
                         bDialog.dismiss();
                     }
                 });
@@ -139,13 +152,13 @@ public class Main extends AppCompatActivity {
                 }
             });
             notification_icon.setClickable(false);
-            if (SP.getBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, false)) {
+            if (SP.getBoolean(Constants.PREFERENCE_SHOW_NOTIFICATION, false)) {
                 notification_icon.setImageResource(R.drawable.ic_action_toggle_check_box);
                 subtitle_show_notification.setText(R.string.subtitle_toggle_notification_on);
                 action_show_notification.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SP.edit().putBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, false).apply();
+                        SP.edit().putBoolean(Constants.PREFERENCE_SHOW_NOTIFICATION, false).apply();
                         updateUI(admin);
                         Utils.showNotification(Main.this, false);
                     }
@@ -156,12 +169,35 @@ public class Main extends AppCompatActivity {
                 action_show_notification.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SP.edit().putBoolean(Costants.PREFERENCE_SHOW_NOTIFICATION, true).apply();
+                        SP.edit().putBoolean(Constants.PREFERENCE_SHOW_NOTIFICATION, true).apply();
                         updateUI(admin);
                         Utils.showNotification(Main.this, true);
                     }
                 });
             }
+
+            action_root_function.setVisibility(RootUtil.isDeviceRooted() ? View.VISIBLE : View.GONE);
+            if (SP.getBoolean(Constants.PREFERENCE_LOCK_INSTANTLY, true)) {
+                root_function_icon.setImageResource(R.drawable.ic_action_toggle_check_box);
+                action_root_function.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SP.edit().putBoolean(Constants.PREFERENCE_LOCK_INSTANTLY, false).apply();
+                        updateUI(admin);
+                    }
+                });
+            } else {
+                root_function_icon.setImageResource(R.drawable.ic_action_toggle_check_box_outline_blank);
+                action_root_function.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SP.edit().putBoolean(Constants.PREFERENCE_LOCK_INSTANTLY, true).apply();
+                        updateUI(admin);
+                    }
+                });
+            }
+
+            Utils.publishCMCustomTile(this);
         } else {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override

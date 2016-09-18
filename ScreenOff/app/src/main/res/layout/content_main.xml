@@ -209,6 +209,51 @@
                     android:orientation="horizontal"
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
+                    android:id="@+id/use_root_function"
+                    android:gravity="center_vertical">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:orientation="vertical"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_root_function"
+                            android:singleLine="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@android:color/white"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/subtitle_root_function"
+                            android:singleLine="true"
+                            android:textColor="@android:color/white"
+                            android:alpha="0.54"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:padding="8dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="8dp"
+                        android:id="@+id/root_function_icon"
+                        android:src="@drawable/ic_action_toggle_check_box_outline_blank"
+                        android:tint="@android:color/white"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:visibility="gone"
                     android:id="@+id/third_part_app"
                     android:gravity="center_vertical">
