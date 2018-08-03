@@ -1,6 +1,7 @@
 package com.nego.screenoff;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
@@ -10,14 +11,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.nego.screenoff.util.RootUtil;
-
-import cyanogenmod.app.CMStatusBarManager;
-import cyanogenmod.app.CustomTile;
 
 
 public class Utils {
@@ -76,16 +75,13 @@ public class Utils {
     }
 
     public static void showNotification(Context context, boolean show) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (show) {
-
             Intent i = new Intent(context, ShortcutReceiver.class);
             i.setAction(Constants.ACTION_SCREEN_OFF);
             PendingIntent pi = PendingIntent.getActivity(context, -1, i, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            NotificationManager notificationManager = (NotificationManager)
-                    context.getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationCompat.Builder n = new NotificationCompat.Builder(context)
-                    .setSmallIcon(R.drawable.ic_stat_screen_off)
+            NotificationCompat.Builder n = new NotificationCompat.Builder(context, "utils")
+                    .setSmallIcon(R.drawable.ic_stat_power_off)
                     .setContentIntent(pi)
                     .setOngoing(true)
                     .setPriority(-1)
@@ -97,42 +93,13 @@ public class Utils {
                 n.setPriority(Notification.PRIORITY_MIN);
             }
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notificationManager.createNotificationChannel(new NotificationChannel("utils", "Util", NotificationManager.IMPORTANCE_MIN));
+            }
+
             notificationManager.notify(-1, n.build());
         } else {
-            NotificationManager notificationManager = (NotificationManager)
-                    context.getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.cancelAll();
-        }
-    }
-
-
-    public static void publishCMCustomTile(Context context) {
-        try {
-            Intent intent = new Intent();
-            intent.setAction(Constants.ACTION_SCREEN_OFF);
-
-            //intent.putExtra(MainActivity.STATE, States.STATE_OFF);
-
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                    intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            Intent long_i = new Intent(context, Main.class);
-            PendingIntent longPendingIntent = PendingIntent.getBroadcast(context, 1,
-                    long_i, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            CustomTile customTile = new CustomTile.Builder(context)
-                    .setOnClickIntent(pendingIntent)
-                    .setContentDescription(context.getString(R.string.text_how_to_use))
-                    .setLabel(context.getString(R.string.app_name))
-                    .shouldCollapsePanel(true)
-                    .setOnLongClickIntent(longPendingIntent)
-                    .setIcon(R.drawable.ic_tile_screen_off)
-                    .build();
-
-            CMStatusBarManager.getInstance(context)
-                    .publishTile(1, customTile);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

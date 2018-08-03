@@ -11,7 +11,7 @@
     <string name="text_version">v</string>
     <string name="text_welcome">Καλώς ήρθατε!</string>
     <string name="text_great">Θαυμάσια!</string>
-    <string name="text_welcome_msg">Για να ενεργοποιήσετε την υπηρεσία πρέπει να της δώσετε δικαιώματα διαχειριστή.</string>
+    <string name="text_welcome_msg">To start, <b>grant administrator privileges</b> to the application. We only use the \"Lock the Screen\" policy to turn off the phone display whenever you want.</string>
     <string name="text_how_to_use">Προσθέστε συντομεύσεις στην επιφάνεια εργασίας ή την μπάρα ειδοποιήσεων για να σβήσετε την οθόνη με ένα άγγιγμα.</string>
     <string name="title_how_to_use">Χρήση:</string>
     <string name="text_attention">Προσοχή!</string>
@@ -43,4 +43,6 @@
     <string name="title_root_function">Root Privileges</string>
     <string name="subtitle_root_function">Not immediately lock the device</string>
     <string name="message_help_uninstall">To uninstall you must remove, first, the administrative privileges.\nFinally, you can proceed to uninstall the app through the system.</string>
+    <string name="text_tip_msg">Just to be clear (yep, again), we only ask you for access to your phone\'s \"Block Screen\" policy to turn off the display whenever you want.</string>
+    <string name="text_policy">What we ask</string>
 </resources>

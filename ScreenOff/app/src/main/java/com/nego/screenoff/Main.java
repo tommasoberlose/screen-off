@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -141,16 +142,22 @@ public class Main extends AppCompatActivity {
         help_card.setVisibility(admin ? View.VISIBLE : View.GONE);
 
         if (admin) {
-            action_add_shortcut.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ShortcutReceiver.addShortcutToHome(Main.this);
-                    Intent startMain = new Intent(Intent.ACTION_MAIN);
-                    startMain.addCategory(Intent.CATEGORY_HOME);
-                    startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(startMain);
-                }
-            });
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                action_add_shortcut.setVisibility(View.GONE);
+            } else {
+                action_add_shortcut.setVisibility(View.VISIBLE);
+                action_add_shortcut.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShortcutReceiver.addShortcutToHome(Main.this);
+                        Intent startMain = new Intent(Intent.ACTION_MAIN);
+                        startMain.addCategory(Intent.CATEGORY_HOME);
+                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(startMain);
+                    }
+                });
+            }
             notification_icon.setClickable(false);
             if (SP.getBoolean(Constants.PREFERENCE_SHOW_NOTIFICATION, false)) {
                 notification_icon.setImageResource(R.drawable.ic_action_toggle_check_box);
@@ -196,19 +203,28 @@ public class Main extends AppCompatActivity {
                     }
                 });
             }
-
-            Utils.publishCMCustomTile(this);
         } else {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ComponentName mAdminName = new ComponentName(Main.this, DeviceAdminReceiver.class);
-                    Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-                    intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
-                            mAdminName);
-                    intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                            getString(R.string.text_request_dev));
-                    startActivityForResult(intent, 5);
+                    View welcome_view = View.inflate(Main.this, R.layout.disclosure_layout, null);
+
+                    new android.support.v7.app.AlertDialog.Builder(Main.this)
+                            .setView(welcome_view)
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    ComponentName mAdminName = new ComponentName(Main.this, DeviceAdminReceiver.class);
+                                    Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                                    intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,
+                                            mAdminName);
+                                    intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                                            getString(R.string.text_request_dev));
+                                    startActivityForResult(intent, 5);
+                                }
+                            })
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .show();
                 }
             });
         }

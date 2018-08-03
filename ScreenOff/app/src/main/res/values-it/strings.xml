@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Screen Off</string>
     <string name="action_disable">Togli i Privilegi di Amministratore</string>
-    <string name="action_enable">Concedi i Privilegi di Amministratore</string>
+    <string name="action_enable">Attiva Applicazione</string>
     <string name="text_error">Errore</string>
     <string name="text_great">Ok</string>
     <string name="text_version">v</string>
@@ -11,7 +11,7 @@
     <string name="text_welcome">Giusto un paio di consigli!</string>
     <string name="text_request_dev">Rendi questa applicazione amministratore di sistema per spegnere lo schermo in ogni momento con un singolo tap.</string>
     <string name="warning_remove_dev">Attenzione: togliere i privilegi di amministratore bloccherà il funzionamento di questa applicazione.</string>
-    <string name="text_welcome_msg">Per iniziare, concedi all\'applicazione i <b>privilegi di amministratore</b>.</string>
+    <string name="text_welcome_msg">Per iniziare, concedi all\'applicazione i <b>privilegi di amministratore</b>. Usiamo solo la policy \"Blocca Schermo\" per spegnere il display del telefono ogni volta che vorrai.</string>
     <string name="text_how_to_use">Aggiungi la scorciatoia alla tua home o a qualsiasi applicazione di terze parti per spegnere lo schermo velocemente con un solo tap.</string>
     <string name="title_how_to_use">Come procedere:</string>
     <string name="text_attention">Attenzione</string>
@@ -43,4 +43,6 @@
     <string name="title_root_function">Privilegi di Root</string>
     <string name="subtitle_root_function">Non bloccare immediatamente il dispositivo</string>
     <string name="message_help_uninstall">Per la disinstallazione è necessario rimuovere, come prima cosa, i privilegi di amministrazione\nInfine si può procedere con il disinstallare l\'app tramite il sistema.</string>
+    <string name="text_tip_msg">Solo per essere chiari (sì, un\'altra volta), ti chiediamo l\'accesso unicamente alla policy \"Blocca Schermo\" del tuo telefono per spegnere il display ogni volta che vorrai.</string>
+    <string name="text_policy">Cosa chiediamo</string>
 </resources>
