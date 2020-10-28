@@ -26,18 +26,6 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".DeviceAdminReceiver"
-            android:permission="android.permission.BIND_DEVICE_ADMIN">
-            <meta-data
-                android:name="android.app.device_admin"
-                android:resource="@xml/device_admin" />
-
-            <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-            </intent-filter>
-        </receiver>
-
         <activity
             android:name=".ShortcutReceiver"
             android:excludeFromRecents="true"
@@ -49,20 +37,6 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name=".BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-            </intent-filter>
-        </receiver>
-
         <receiver android:name=".ExportedBroadcastReceiver"
             android:exported="true">
             <intent-filter>
@@ -70,17 +44,17 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".Donation"
-            android:label="@string/title_activity_donation"
-            android:parentActivityName=".Main"
-            android:theme="@style/AppTheme.Donation"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize">
+        <service android:name=".MyAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:label="@string/accessibility_service_title">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nego.screenoff.Main" />
-        </activity>
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
     </application>
 
 </manifest>

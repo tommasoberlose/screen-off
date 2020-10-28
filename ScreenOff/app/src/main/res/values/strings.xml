@@ -7,7 +7,7 @@
     <string name="warning_remove_dev">Warning: remove admin permissions shout down screen off application.</string>
     <string name="text_request_dev">Make this application a device administrator to turn off screen when you want with a single tap.</string>
     <string name="text_error">Error</string>
-    <string name="text_version">v</string>
+    <string name="text_version">v%s</string>
     <string name="text_welcome">Just a few tips!</string>
     <string name="text_great">Got it</string>
     <string name="text_welcome_msg">To start, <b>grant administrator privileges</b> to the application. We only use the \"Lock the Screen\" policy to turn off the phone display whenever you want.</string>
@@ -45,4 +45,11 @@
     <string name="message_help_uninstall">To uninstall you must remove, first, the administrative privileges.\nFinally, you can proceed to uninstall the app through the system.</string>
     <string name="text_tip_msg">Just to be clear (yep, again), we only ask you for access to your phone\'s \"Lock the Screen\" policy to turn off the display whenever you want.</string>
     <string name="text_policy">What we ask</string>
+    <string name="accessibility_service_title">Screen Off Accessibility Service</string>
+    <string name="accessibility_service_explanation">
+        <b>Lock device: Accessibility Service</b>
+        \nIn order to lock the screen, we need to set Screen Off as an \'Accessibility Service\'.
+    </string>
+    <string name="service_enabled">Service Enabled</string>
+
 </resources>
