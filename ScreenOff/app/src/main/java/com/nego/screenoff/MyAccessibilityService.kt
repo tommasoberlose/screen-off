@@ -3,6 +3,7 @@ package com.nego.screenoff
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
@@ -19,12 +20,11 @@ class MyAccessibilityService : AccessibilityService() {
   }
 
   override fun onServiceConnected() {
-    serviceInfo.apply {
+    this.serviceInfo = serviceInfo.apply {
       eventTypes = AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED
       flags = AccessibilityServiceInfo.DEFAULT
       notificationTimeout = 100
     }
-
   }
 
   override fun onInterrupt() {
@@ -34,15 +34,21 @@ class MyAccessibilityService : AccessibilityService() {
     const val COMMAND_SCREEN_OFF = "com.nego.screenoff.command.SCREEN_OFF"
 
     fun screenOff(context: Context) {
-      with(context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager) {
-        if (isEnabled) {
-          val event = AccessibilityEvent.obtain(AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED)
-          event.packageName = context.packageName
-          event.className = this.javaClass.name
-          event.isEnabled = true
-          event.text.add(COMMAND_SCREEN_OFF)
-          sendAccessibilityEvent(event)
+      if (isAccessibilityServiceEnabled(context)) {
+        with(context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager) {
+          if (isEnabled) {
+            val event = AccessibilityEvent.obtain(AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED)
+            event.packageName = context.packageName
+            event.className = this.javaClass.name
+            event.isEnabled = true
+            event.text.add(COMMAND_SCREEN_OFF)
+            sendAccessibilityEvent(event)
+          }
         }
+      } else {
+        context.startActivity(Intent(context, Main::class.java).apply {
+          flags += Intent.FLAG_ACTIVITY_NEW_TASK
+        })
       }
     }
 
